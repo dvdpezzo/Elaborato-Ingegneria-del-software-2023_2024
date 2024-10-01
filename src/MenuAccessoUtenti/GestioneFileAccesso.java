@@ -55,16 +55,17 @@ public class GestioneFileAccesso {
      * OSS: NON ANCORA TESTATO */
 
     public void configuraMappa() throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(file_configuratori));
-        for(HashMap.Entry<String,String> entry : mapConfiguratori.entrySet()){
-            String parola= br.readLine();
-            while(parola!=null && !parola.equals("\n")){
-                String [] dati = parola.split(" ");
-                String nome = dati[0];
-                String pass = dati[1];
-                mapConfiguratori.put(nome,pass);
+        try (BufferedReader br = new BufferedReader(new FileReader(file_configuratori))) {
+            for(HashMap.Entry<String,String> entry : mapConfiguratori.entrySet()){
+                String parola= br.readLine();
+                while(parola!=null && !parola.equals("\n")){
+                    String [] dati = parola.split(" ");
+                    String nome = dati[0];
+                    String pass = dati[1];
+                    mapConfiguratori.put(nome,pass);
 
-                parola=br.readLine();
+                    parola=br.readLine();
+                }
             }
         }
     }
