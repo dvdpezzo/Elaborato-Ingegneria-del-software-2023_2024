@@ -1,9 +1,18 @@
 package model;
 
-public class Main {
+import menuAccessoUtenti.*;
 
+public class Main {
 	public static void main(String[] args) {
-		System.out.println("Hello world!");
+
+
+		//test di avvio del menu 
+		MenuAccesso menu1 = new MenuAccesso();
+		menu1.avvio();
+
+		
+		
+
 
 	}
 
