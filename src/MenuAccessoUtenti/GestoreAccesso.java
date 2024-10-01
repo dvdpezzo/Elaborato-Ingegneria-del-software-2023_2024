@@ -1,6 +1,7 @@
 package menuAccessoUtenti;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -15,13 +16,19 @@ public class GestoreAccesso {
     private final static File file_configuratori = new File("File di accesso\\credenzialiConfiguratori.txt");
     //private final static File file_fruitori = new File("File di accesso\\credenzialiFruitori.txt");
 
-    private HashMap<String, String> mappaUtenti;
+    private HashMap<String, String> mappaUtenti = new HashMap<>();
     private GestoreFileAccesso gestoreFile;
     
 
     public GestoreAccesso() {
-        this.mappaUtenti = new HashMap<>();
         this.gestoreFile = new GestoreFileAccesso(mappaUtenti);
+        try {
+            gestoreFile.configuraMappaDaFile(file_configuratori);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
      /**
@@ -37,13 +44,15 @@ public class GestoreAccesso {
         return false;
     }
     /**
-     * permette l'accesso al configuratore
+     * permette l'accesso al configuratore: controlla prima di tutto che non sia il primo accesso,
+     * altrimenti controlla le credenziali e se sono valide, permette l'accesso
      * @param nomeUtente
      * @param pass password
      */
-    public void accessoConfig(String nomeUtente, String pass){
+    public void accessoUtente(String nomeUtente, String pass){
         if(primoAccesso(nomeUtente,pass)){
             System.out.println("Sei stasto reindirizzato alla creazione del tuo Nome utente e Password personali:");
+            aggiungiDatiAllaMappa(nomeUtente, pass);
         }
         else{
             if(ctrlAccesso(nomeUtente,pass)){
@@ -56,22 +65,13 @@ public class GestoreAccesso {
         }
 
     }
-
-    /**
-     * permette l'accesso al fruitore
-     * @param nomeUtente
-     * @param pass password
-     */
-    public void accessoFruit(String nomeUtente, String pass){
-
-    }
     /**
      * Permette di aggiungere nome utente e password nella mappa e le salva sul file
      * @param nomeUtente 
      * @param pass password
      * @throws IOException 
      */
-    public void aggiungiDatiAllaMappa(String nomeUtente, String pass) {
+    private void aggiungiDatiAllaMappa(String nomeUtente, String pass) {
         mappaUtenti.put(nomeUtente, pass);
         try {
             gestoreFile.salvaMappaSuFile(file_configuratori);
@@ -100,8 +100,7 @@ public class GestoreAccesso {
      */
     
     public void registraNuovoConfiguratore(String nomeUtente, String pass) {
-        boolean val = controlloCredenzialiNomeUtente(nomeUtente);
-        if (val) {
+        if (controlloCredenzialiNomeUtente(nomeUtente)) {
             aggiungiDatiAllaMappa(nomeUtente, pass);
         }
     }
@@ -112,12 +111,10 @@ public class GestoreAccesso {
      * @param pass password
      * @return restituisce vero se li trova, altrimenti falso
      */
-    public boolean ctrlAccesso(String nomeUtente, String pass){
+    private boolean ctrlAccesso(String nomeUtente, String pass){
         if(mappaUtenti.containsKey(nomeUtente) && mappaUtenti.containsValue(pass)) {
             return true;
         }
         return false;
-    }
-
-    
+    }   
 }

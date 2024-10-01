@@ -8,23 +8,25 @@ public class MenuAccesso {
 
     private final String [] AZIONI_POSSIBILI ={"ACCESSO COORDINATORE", "ACCESSO FRUITORE"};
 
-    public void avvio() {
-        int valore=0;
+    public void avvio(GestoreAccesso gestoreAccesso) {
+        int scelta=0;
         MenuUtil menuLogin = new MenuUtil("MENU DI ACCESSO:", AZIONI_POSSIBILI);
-        GestoreAccesso gestoreAccesso = new GestoreAccesso();
         do {
-            valore=menuLogin.scegli();
-            switch(valore){
+            scelta = menuLogin.scegli();
+            switch(scelta){
                 //accesso coordinatore
                 case 1:
-                    System.out.println("Non ancora implementato");
+                    String nomeConfig= InputDati.leggiStringaNonVuota("Inserire nome utente: ");
+                    String passConfig= InputDati.leggiStringaNonVuota("Inserisci password: ");
+                    gestoreAccesso.accessoUtente(nomeConfig, passConfig);
                     break;
                 //accesso fruitore
                 case 2:
-                    System.out.println("Non ancora implementato");
+                    String nomeFruit= InputDati.leggiStringaNonVuota("Inserire nome utente: ");
+                    String passFruit= InputDati.leggiStringaNonVuota("Inserisci password: ");
+                    gestoreAccesso.accessoUtente(nomeFruit, passFruit);
                     break;
             }
-
-        }while(valore!=0);
+        }while(scelta!=0);
     }
 }

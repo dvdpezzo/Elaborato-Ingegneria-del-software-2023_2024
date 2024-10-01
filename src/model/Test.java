@@ -10,12 +10,11 @@ public class Test {
     public static void main(String[] args) {
         
 
-		//test di avvio del menu 
+		GestoreAccesso ga = new GestoreAccesso();
+        //test di avvio del menu 
 		MenuAccesso menu1 = new MenuAccesso();
-		//menu1.avvio();
-		GestoreAccesso gestoreAccesso = new GestoreAccesso();
+		menu1.avvio(ga);
 		
-        gestoreAccesso.aggiungiDatiAllaMappa("utente", "utente");
 		
 		
 

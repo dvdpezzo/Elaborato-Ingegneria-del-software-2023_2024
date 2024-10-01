@@ -31,9 +31,10 @@ public class GestoreFileAccesso {
     /**
      * Effettua configurazione iniziale della mappa: legge il file delle credenziali e imposta per ogni riga
      * nome utente e password
+     * @throws FileNotFoundException 
      * @throws IOException
      */
-    public void configuraMappaDaFile(File nomeFile) throws IOException {
+    public void configuraMappaDaFile(File nomeFile) throws FileNotFoundException, IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(nomeFile))) {
             String parola = br.readLine();
             do {
