@@ -1,6 +1,6 @@
-package MenuAccessoUtenti;
+package menuAccessoUtenti;
 
-import UtilitàGenerale.*;
+import utilitaGenerale.*;
 
 /* MENU DI ACCESSO MOLTO BASILARE, BISOGNA CREARE UNA CLASSE DI GESTIONE DEL FILE DI ACCESO (UNA MAPPA) */
 
@@ -10,9 +10,9 @@ public class MenuAccesso {
 
     public void avvio() {
         int valore=0;
-        MenuUtill menuLogin = new MenuUtill("MENU DI ACCESSO:", AZIONI_POSSIBILI);
+        MenuUtil menuLogin = new MenuUtil("MENU DI ACCESSO:", AZIONI_POSSIBILI);
         do {
-            valore=menuLogin.scelta();
+            valore=menuLogin.scegli();
             switch(valore){
                 case 1:
                     System.out.println("Non ancora implementato");

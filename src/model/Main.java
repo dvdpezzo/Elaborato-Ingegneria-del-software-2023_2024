@@ -1,7 +1,6 @@
 package model;
 
-import MenuAccessoUtenti,*;
-import UtilitàGenerale,*;
+import menuAccessoUtenti.*;
 
 public class Main {
 	public static void main(String[] args) {

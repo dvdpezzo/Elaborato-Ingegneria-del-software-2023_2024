@@ -1,7 +1,9 @@
-package MenuAccessoUtenti;
+package menuAccessoUtenti;
 
 import java.io.*;
 import java.util.HashMap;
+
+import utilitaGenerale.InputDati;
 
 /*classe usata per la gestione del file di accesso con nomi utenti e password +metodi di controllo */
 public class GestioneFileAccesso {
