@@ -11,13 +11,15 @@ public class MenuAccesso {
     public void avvio() {
         int valore=0;
         MenuUtil menuLogin = new MenuUtil("MENU DI ACCESSO:", AZIONI_POSSIBILI);
+        GestoreAccesso gestoreAccesso = new GestoreAccesso();
         do {
             valore=menuLogin.scegli();
             switch(valore){
+                //accesso coordinatore
                 case 1:
                     System.out.println("Non ancora implementato");
                     break;
-
+                //accesso fruitore
                 case 2:
                     System.out.println("Non ancora implementato");
                     break;
