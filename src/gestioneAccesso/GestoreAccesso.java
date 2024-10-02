@@ -14,107 +14,122 @@ public class GestoreAccesso {
     private final static String UTENTE_DEFAULT="Utente000";
     private final static String PASS_DEFAULT="Pass000";
     private final static File file_configuratori = new File("File di accesso\\credenzialiConfiguratori.txt");
-    //private final static File file_fruitori = new File("File di accesso\\credenzialiFruitori.txt");
+    private final static File file_fruitori = new File("File di accesso\\credenzialiFruitori.txt");
 
-    private HashMap<String, String> mappaUtenti = new HashMap<>();
-    private GestoreFileAccesso gestoreFile;
-    
+    private HashMap<String, String> mappaConfiguratori = new HashMap<>();
+    private HashMap<String, String> mappaFruitori = new HashMap<>();
+    private GestoreFileAccesso gestoreFileConfiguratori;
+    private GestoreFileAccesso gestoreFileFruitori;
 
     public GestoreAccesso() {
-        this.gestoreFile = new GestoreFileAccesso(mappaUtenti);
+        this.gestoreFileConfiguratori = creaGestoreFileAccesso(mappaConfiguratori, file_configuratori);
+        this.gestoreFileFruitori = creaGestoreFileAccesso(mappaFruitori, file_fruitori);
+    }
+
+    private GestoreFileAccesso creaGestoreFileAccesso(HashMap<String, String> mappa, File file){
+        GestoreFileAccesso gestoreFile = new GestoreFileAccesso(mappa); 
         try {
-            gestoreFile.configuraMappaDaFile(file_configuratori);
-        } catch (FileNotFoundException e) {
+            gestoreFile.configuraMappaDaFile(file);
+        }  catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-     /**
-     * Controlla se si sta facendo il primo accesso analizzando i dati inseriti se sono quelli di default
-     * @param nomeUtente
-     * @param pass password
-     * @return vero se si sta effettuando il primo accesso, falso altrimenti
-     */
-    private boolean primoAccesso(String nomeUtente, String pass){
-        if(nomeUtente.equals(UTENTE_DEFAULT) && pass.equals(PASS_DEFAULT)){
+        }    
+        return gestoreFile;        
+    }     
+    public boolean accessoUtente(String nomeUtente, String password) {
+        if (isCoordinatore(nomeUtente, password)) {
+            System.out.println("Accesso riuscito.");
             return true;
+        } else if (isFruitore(nomeUtente, password)) {
+            System.out.println("Accesso riuscito.");
+            return true;
+        } else {
+            System.out.println("Accesso non riuscito.");
+            return false;
         }
-        return false;
     }
     /**
-     * permette l'accesso al configuratore: controlla prima di tutto che non sia il primo accesso,
-     * altrimenti controlla le credenziali e se sono valide, permette l'accesso
-     * @param nomeUtente
-     * @param pass password
+     * Aggiunge un nuovo utente alla mappa e al file specificati
+     * @param nomeUtente Nome utente da aggiungere
+     * @param password Password dell'utente
+     * @param mappa Mappa in cui aggiungere l'utente (mappaConfiguratori o mappaFruitori)
+     * @param file File in cui salvare le credenziali
+     * @throws IOException Se si verifica un errore durante il salvataggio su file
      */
-    public void accessoUtente(String nomeUtente, String pass){
-        if(primoAccesso(nomeUtente,pass)){
-            System.out.println("Sei stasto reindirizzato alla creazione del tuo Nome utente e Password personali:");
-            aggiungiDatiAllaMappa(nomeUtente, pass);
+    public void aggiungiUtente(String nomeUtente, String password, HashMap<String, String> mappa, File file) throws IOException {
+        if (controlloCredenzialiNomeUtente(nomeUtente, password, mappa)) {
+            mappa.put(nomeUtente, password);
+            GestoreFileAccesso gestoreFile = (mappa == mappaConfiguratori) ? gestoreFileConfiguratori : gestoreFileFruitori;
+            gestoreFile.salvaMappaSuFile(file);
+            System.out.println("Utente aggiunto con successo.");
+        } else {
+            System.out.println("Impossibile aggiungere l'utente. Nome utente già esistente.");
         }
-        else{
-            if(ctrlAccesso(nomeUtente,pass)){
-                System.out.println("Accesso effettuato corretamente!");
-            }
-            else{
-                System.out.println("ERRORE! Nome Utente o password errati!");
-            }
-
-        }
-
-    }
+    }    
     /**
-     * Permette di aggiungere nome utente e password nella mappa e le salva sul file
-     * @param nomeUtente 
-     * @param pass password
-     * @throws IOException 
+     * Rimuove un utente dalla mappa e dal file specificati
+     * @param nomeUtente Nome utente da rimuovere
+     * @param mappa Mappa da cui rimuovere l'utente (mappaConfiguratori o mappaFruitori)
+     * @param file File da cui rimuovere le credenziali
+     * @throws IOException Se si verifica un errore durante il salvataggio su file
      */
-    private void aggiungiDatiAllaMappa(String nomeUtente, String pass) {
-        mappaUtenti.put(nomeUtente, pass);
-        try {
-            gestoreFile.salvaMappaSuFile(file_configuratori);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void rimuoviUtente(String nomeUtente, HashMap<String, String> mappa, File file) throws IOException {
+        if (mappa.containsKey(nomeUtente)) {
+            mappa.remove(nomeUtente);
+            GestoreFileAccesso gestoreFile = (mappa == mappaConfiguratori) ? gestoreFileConfiguratori : gestoreFileFruitori;
+            gestoreFile.salvaMappaSuFile(file);
+            System.out.println("Utente rimosso con successo.");
+        } else {
+            System.out.println("Utente non trovato. Impossibile rimuovere.");
         }
     }
+
+    /**
+     * Verifica se un utente è un coordinatore
+     * @param nomeUtente Nome utente da verificare
+     * @param password Password dell'utente
+     * @return true se l'utente è un coordinatore, false altrimenti
+     */
+    public boolean isCoordinatore(String nomeUtente, String password) {
+        return mappaConfiguratori.containsKey(nomeUtente) && mappaConfiguratori.get(nomeUtente).equals(password);
+    }
+
+    /**
+     * Verifica se un utente è un fruitore
+     * @param nomeUtente Nome utente da verificare
+     * @param password Password dell'utente
+     * @return true se l'utente è un fruitore, false altrimenti
+     */
+    public boolean isFruitore(String nomeUtente, String password) {
+        return mappaFruitori.containsKey(nomeUtente) && mappaFruitori.get(nomeUtente).equals(password);
+    }
+    
     /**
      * Controllo sull'unicità del nome utente
      * @param nomeUtente
      * @return se il nome utente non è presente ritorna true
      */
-    private boolean controlloCredenzialiNomeUtente(String nomeUtente){
-        if(mappaUtenti.containsKey(nomeUtente))
+    private boolean controlloCredenzialiNomeUtente(String nomeUtente, String pass, HashMap<String, String> mappa){
+        if(mappa.containsKey(nomeUtente))
         {
             System.out.println("Nome utente già utilizzato! Scegline un altro!");
             return false;
         }
         return true;
     }
-
     /**
-     * metodo che permette la registrazione di un configuratore con controllo sul nome utente
-     * @param nomeUtente
-     * @param pass
+     * Controlla se si sta facendo il primo accesso analizzando i dati inseriti se sono quelli di default
+     * @param nomeUtente Nome utente sul quale effettuare il controllo
+     * @param pass Password dell'utente
+     * @return vero se si sta effettuando il primo accesso, falso altrimenti
      */
-    
-    public void registraNuovoConfiguratore(String nomeUtente, String pass) {
-        if (controlloCredenzialiNomeUtente(nomeUtente)) {
-            aggiungiDatiAllaMappa(nomeUtente, pass);
-        }
-    }
-
-    /**
-     * Controlla se i dati inseriti dall'utente (nome utente e password) sono corretti
-     * @param nomeUtente
-     * @param pass password
-     * @return restituisce vero se li trova, altrimenti falso
-     */
-    private boolean ctrlAccesso(String nomeUtente, String pass){
-        if(mappaUtenti.containsKey(nomeUtente) && mappaUtenti.containsValue(pass)) {
+    public boolean primoAccesso(String nomeUtente, String pass){
+        if(nomeUtente.equals(UTENTE_DEFAULT) && pass.equals(PASS_DEFAULT)){
             return true;
         }
         return false;
-    }   
+    }
+
+
 }

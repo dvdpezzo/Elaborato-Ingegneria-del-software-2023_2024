@@ -19,8 +19,8 @@ public class GestoreFileAccesso {
      * Permette di aggiungere nuove credenziali dalla mappa al file
      * @throws IOException
      */
-    public void salvaMappaSuFile(File nomeFile) throws IOException {
-        BufferedWriter bw = new BufferedWriter(new FileWriter(nomeFile));
+    public void salvaMappaSuFile(File pathFile) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter(pathFile));
         for (HashMap.Entry<String,String> entry : mappaUtenti.entrySet()) {
             String utente = entry.getKey() + " " + entry.getValue();
             bw.write(utente);
@@ -34,16 +34,16 @@ public class GestoreFileAccesso {
      * @throws FileNotFoundException 
      * @throws IOException
      */
-    public void configuraMappaDaFile(File nomeFile) throws FileNotFoundException, IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader(nomeFile))) {
+    public void configuraMappaDaFile(File pathFile) throws FileNotFoundException, IOException {
+        try (BufferedReader br = new BufferedReader(new FileReader(pathFile))) {
             String parola = br.readLine();
-            do {
+            while (parola != null && !parola.equals("\n") &&!parola.isEmpty() && parola.charAt(0)!='\t') {
                 String [] dati = parola.split(" ");
                 String nome = dati[0];
                 String pass = dati[1];
-                mappaUtenti.put(nome,pass); 
-                parola = br.readLine();               
-            } while (parola!=null && !parola.equals("\n"));
+                mappaUtenti.put(nome,pass);
+                parola = br.readLine();
+            }
         }
     }   
 }
