@@ -20,13 +20,13 @@ public class GestoreFileAccesso {
      * @throws IOException
      */
     public void salvaMappaSuFile(File pathFile) throws IOException {
-        BufferedWriter bw = new BufferedWriter(new FileWriter(pathFile));
-        for (HashMap.Entry<String,String> entry : mappaUtenti.entrySet()) {
-            String utente = entry.getKey() + " " + entry.getValue();
-            bw.write(utente);
-            bw.newLine();
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(pathFile))) {
+            for (HashMap.Entry<String,String> entry : mappaUtenti.entrySet()) {
+                String utente = entry.getKey() + " " + entry.getValue();
+                bw.write(utente);
+                bw.newLine();
+            }
         }
-        bw.close();
     }
     /**
      * Effettua configurazione iniziale della mappa: legge il file delle credenziali e imposta per ogni riga

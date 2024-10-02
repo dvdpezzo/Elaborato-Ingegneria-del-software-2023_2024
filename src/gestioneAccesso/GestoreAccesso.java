@@ -11,10 +11,10 @@ import java.util.HashMap;
  */
 public class GestoreAccesso {
 
-    private final static String UTENTE_DEFAULT="Utente000";
-    private final static String PASS_DEFAULT="Pass000";
-    private final static File file_configuratori = new File("File di accesso\\credenzialiConfiguratori.txt");
-    private final static File file_fruitori = new File("File di accesso\\credenzialiFruitori.txt");
+    private static final String UTENTE_DEFAULT="Utente000";
+    private static final String PASS_DEFAULT="Pass000";
+    private static final File file_configuratori = new File("File di accesso\\credenzialiConfiguratori.txt");
+    private static final File file_fruitori = new File("File di accesso\\credenzialiFruitori.txt");
 
     private HashMap<String, String> mappaConfiguratori = new HashMap<>();
     private HashMap<String, String> mappaFruitori = new HashMap<>();
@@ -125,10 +125,7 @@ public class GestoreAccesso {
      * @return vero se si sta effettuando il primo accesso, falso altrimenti
      */
     public boolean primoAccesso(String nomeUtente, String pass){
-        if(nomeUtente.equals(UTENTE_DEFAULT) && pass.equals(PASS_DEFAULT)){
-            return true;
-        }
-        return false;
+        return nomeUtente.equals(UTENTE_DEFAULT) && pass.equals(PASS_DEFAULT);
     }
 
 
