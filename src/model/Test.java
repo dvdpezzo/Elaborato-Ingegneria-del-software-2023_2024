@@ -1,5 +1,5 @@
 package model;
-import menuAccessoUtenti.*;
+import gestioneAccesso.*;
 
 public class Test {
     public static void main(String[] args) {        

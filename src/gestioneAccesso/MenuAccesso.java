@@ -1,4 +1,4 @@
-package menuAccessoUtenti;
+package gestioneAccesso;
 
 import utilitaGenerale.*;
 
