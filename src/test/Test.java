@@ -1,4 +1,4 @@
-package model;
+package test;
 import gestioneAccesso.*;
 
 public class Test {
@@ -6,8 +6,7 @@ public class Test {
 
 		GestoreAccesso ga = new GestoreAccesso();
         //test di avvio del menu 
-		MenuAccesso menu1 = new MenuAccesso();
-		menu1.avvio(ga);
+		MenuAccesso.avvio();
 
     }
     
