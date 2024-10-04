@@ -14,8 +14,7 @@ public class MenuAccesso {
         do {
             scelta = menuLogin.scegli();
             switch(scelta){
-                //accesso coordinatore
-                case 1:
+                case 1 -> {
                     String passConfig;
                     String nomeConfig;
                     do {
@@ -25,18 +24,19 @@ public class MenuAccesso {
                     } while (gestoreAccesso.primoAccesso(nomeConfig, passConfig));
                     gestoreAccesso.accessoUtente(nomeConfig, passConfig); //->ritorna un booleano che indica se l'accesso è riuscito
                     //da implementare cosa l'accesso farà
-                    break;
-                //accesso fruitore
-                case 2:
-                String passFruitore;
-                String nomeFruitore;
-                do {
-                    nomeFruitore= InputDati.leggiStringaNonVuota("Inserire nome utente: ");
-                    passFruitore= InputDati.leggiStringaNonVuota("Inserisci password: ");
-                } while (gestoreAccesso.primoAccesso(nomeFruitore, passFruitore));
-                gestoreAccesso.accessoUtente(nomeFruitore, passFruitore);
-                break;
+                }
+                case 2 -> {
+                    String passFruitore;
+                    String nomeFruitore;
+                    do {
+                        nomeFruitore= InputDati.leggiStringaNonVuota("Inserire nome utente: ");
+                        passFruitore= InputDati.leggiStringaNonVuota("Inserisci password: ");
+                    } while (gestoreAccesso.primoAccesso(nomeFruitore, passFruitore));
+                    gestoreAccesso.accessoUtente(nomeFruitore, passFruitore);
+                }
             }
-        }while(scelta!=0);
+            //accesso coordinatore
+            //accesso fruitore
+                    }while(scelta!=0);
     }
 }

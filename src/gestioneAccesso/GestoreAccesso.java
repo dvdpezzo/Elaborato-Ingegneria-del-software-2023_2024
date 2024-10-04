@@ -11,10 +11,13 @@ import java.util.HashMap;
  */
 public class GestoreAccesso {
 
+    private static final String FILE_DI_ACCESSO_CREDENZIALI_FRUITORI_TXT = "File di accesso\\credenzialiFruitori.txt";
+    private static final String FILE_DI_ACCESSO_CREDENZIALI_CONFIGURATORI_TXT = "File di accesso\\credenzialiConfiguratori.txt";
     private static final String UTENTE_DEFAULT="Utente000";
     private static final String PASS_DEFAULT="Pass000";
-    private static final File file_configuratori = new File("File di accesso\\credenzialiConfiguratori.txt");
-    private static final File file_fruitori = new File("File di accesso\\credenzialiFruitori.txt");
+    
+    private File file_configuratori = new File(FILE_DI_ACCESSO_CREDENZIALI_CONFIGURATORI_TXT);
+    private File file_fruitori = new File(FILE_DI_ACCESSO_CREDENZIALI_FRUITORI_TXT);
 
     private HashMap<String, String> mappaConfiguratori = new HashMap<>();
     private HashMap<String, String> mappaFruitori = new HashMap<>();
