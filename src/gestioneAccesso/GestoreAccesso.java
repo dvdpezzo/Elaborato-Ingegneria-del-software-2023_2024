@@ -9,11 +9,13 @@ import model.*;
  */
 public class GestoreAccesso {
 
-    private final static String UTENTE_DEFAULT="admin";
-    private final static String PASS_DEFAULT="admin";
-    private final static File file_configuratori = new File("File di accesso\\credenzialiConfiguratori.txt");
-    //private final static File file_fruitori = new File("File di accesso\\credenzialiFruitori.txt");
-
+    private static final String FILE_DI_ACCESSO_CREDENZIALI_FRUITORI_TXT = "File di accesso\\credenzialiFruitori.txt";
+    private static final String FILE_DI_ACCESSO_CREDENZIALI_CONFIGURATORI_TXT = "File di accesso\\credenzialiConfiguratori.txt";
+    private static final String UTENTE_DEFAULT="admin";
+    private static final String PASS_DEFAULT="admin";
+    
+    private File file_configuratori = new File(FILE_DI_ACCESSO_CREDENZIALI_CONFIGURATORI_TXT);
+    private File file_fruitori = new File(FILE_DI_ACCESSO_CREDENZIALI_FRUITORI_TXT);
     private HashMap<String, String> mappaCredenzialiUtenti = new HashMap<>();
     private GestoreFileCredenziali gestoreFile;
     private GestoreUtenti gestoreUtenti;
