@@ -11,7 +11,7 @@ public class Configuratore extends Utente  {
         super(nomeUtente, passwordUtente);
     }
 
-
+ //3 comuni vicini (linkedList) 
     public ComprensorioGeografico creaComprensorioGeografico(){
         return null;
     }    
