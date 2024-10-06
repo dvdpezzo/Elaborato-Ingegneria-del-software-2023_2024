@@ -13,7 +13,7 @@ public class GestoreCategorie {
         
         // Creiamo la categoria radice
         Categoria radice = new Categoria(nomeCategoria);
-        
+        Boolean condition = true; // Inserire qui il codice per stabilire quando terminare la creazione della gerarchia
         // Creiamo le sottocategorie e aggiungiamo Sottocategorie alla categoria radice
         do {
             // Inserire qui il codice per creare una nuova sottocategoria
