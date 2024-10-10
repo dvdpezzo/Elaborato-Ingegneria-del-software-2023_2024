@@ -27,6 +27,14 @@ public class Comuni {
         this.nome = nome;
     }
 
+    //controllo se i 2 comuni hanno lo stesso nome.
+    public boolean equals(Comuni c){
+        if(this.getNome().equalsIgnoreCase(c.getNome()))
+        return true;
+
+        else return false;
+    }
+
 
 
     
