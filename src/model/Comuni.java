@@ -4,10 +4,17 @@ package model;
 public class Comuni {
 
     public String nome;
+    public Integer numero=0;
 
 
     public Comuni(String nome){
         this.nome=nome;
+        this.numero=numero+1;
+    }
+
+
+    public Integer getNumero(){
+        return numero;
     }
 
 

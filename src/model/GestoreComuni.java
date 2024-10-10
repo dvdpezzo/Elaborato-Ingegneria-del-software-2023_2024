@@ -36,8 +36,18 @@ public class GestoreComuni {
     //visualizza elenco comuni
     public void visualizzaComuni(){
         for(int i=0;i<listaComuni.size();i++){
-            System.out.println(listaComuni.get(i)+"\n");
+            System.out.println(listaComuni.get(i).getNumero()+" "+listaComuni.get(i).getNome());
         }
+    }
+
+    //metodo per la scelta del comune da inserire nel compensporio geografico
+    public Comuni scegliComune(int n){
+        for(int i=0;i<listaComuni.size();i++){
+            if(listaComuni.get(i).getNumero()==n){
+                return listaComuni.get(i);
+            }
+        }
+        return null;
     }
 
     /*

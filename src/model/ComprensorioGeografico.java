@@ -3,8 +3,8 @@ package model;
 import java.util.*;
 public class ComprensorioGeografico {
 
-    public int codice;
-    public List<Comuni> listaComuni = new ArrayList<>();
+    private int codice;
+    public List<Comuni> listaComuni = new ArrayList<>(); //non posso mettere List()
     
     
     public ComprensorioGeografico(List<Comuni> listaComuni){

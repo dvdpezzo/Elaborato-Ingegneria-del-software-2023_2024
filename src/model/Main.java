@@ -58,3 +58,7 @@ public class Main {
 		} while (isLoggedIn);
 	}
 }
+
+/* Bisgona modificare il Main ed il  Menu in modo che permetta di inserire più comuni nella lista dei comuni da sceglire, magari 
+ * prima di creare il compensorio si può chiedere se si vogliono inserire dei comuni con la scelta YES OR NO di InputDati.
+ */
