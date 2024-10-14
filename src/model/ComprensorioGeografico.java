@@ -4,10 +4,10 @@ import java.util.*;
 public class ComprensorioGeografico {
 
     private int codice;
-    public List<Comuni> listaComuni = new ArrayList<>(); //non posso mettere List()
+    public List<String> listaComuni = new ArrayList<>(); //non posso mettere List()
     
     
-    public ComprensorioGeografico(List<Comuni> listaComuni){
+    public ComprensorioGeografico(List<String> listaComuni){
         this.codice=generaCodice();
         this.listaComuni=listaComuni;
     }

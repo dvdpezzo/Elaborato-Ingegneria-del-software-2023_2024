@@ -35,6 +35,7 @@ public class GestoreComprensorio {
      * A)Metodo che stampa la mappa dei comprensori
      * B)Metodo che salva la mappa dei comprensori su file
      * C)Metodo che aggiorna la mappa dei comprensori su file
+     * D)Metodo che carica la mappa dei comprensori all'avvio.
      */
 
 
