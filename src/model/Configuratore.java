@@ -49,8 +49,8 @@ public class Configuratore extends Utente  {
         return new ComprensorioGeografico(listaComuni);
     }    
 
-    public void salvaCambiamenti(){}
 
+    public void salvaCambiamenti(){}
     public void visualizzaComprensori(){}
     public void visualizzaGerarchia(){}
     public void visualizzaFattoriConversione(){}
@@ -59,7 +59,7 @@ public class Configuratore extends Utente  {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    Categoria creaCategoria() {
+    public Categoria creaCategoria() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
