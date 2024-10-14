@@ -1,12 +1,14 @@
 package model;
 
 import java.util.HashMap;
+import java.io.*;
 
 
 //classe che gestisce l'elenco dei comprensori inseriti dal configuratore
 public class GestoreComprensorio {
 
     public HashMap<Integer,ComprensorioGeografico> comprensori = new HashMap<>();
+    private File fileComprensori = new File("C:\\Users\\Mazza\\Desktop\\ign soft 2023 2024\\Elaborato-Ingegneria-del-software-2023_2024\\File di accesso\\elencoComprensori");
 
 
 
@@ -27,21 +29,41 @@ public class GestoreComprensorio {
         else return false;
     }
 
+    //salva la mappa sul file elencoComprensori
+    public void scriviComprensorio() throws IOException{
+         BufferedWriter bw = new BufferedWriter(new FileWriter(fileComprensori));
+        for (HashMap.Entry<Integer,ComprensorioGeografico> entry : comprensori.entrySet()){
+            String comprensorio = entry.getKey()+ " "+ entry.getValue().getListaComuni();
+            bw.write(comprensorio);
+            bw.newLine();
+        }
+        bw.close();
+    }
 
 
-    
-
-    /* SERVONO:
-     * A)Metodo che stampa la mappa dei comprensori
-     * B)Metodo che salva la mappa dei comprensori su file
-     * C)Metodo che aggiorna la mappa dei comprensori su file
-     * D)Metodo che carica la mappa dei comprensori all'avvio.
-     */
+    /*legge la mappa dei comprensori da file 
+    OSS: Non ho idea di come svilupparlo visto che devo passare un argomento Comprensorio.
+    */
+    public void leggiComprensorio()throws IOException{
+        try (BufferedReader br = new BufferedReader(new FileReader(fileComprensori))){
 
 
 
 
-    
+    }
+
 
 
 }
+
+}
+    
+
+    
+    
+
+
+    
+
+
+
