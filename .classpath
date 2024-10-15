@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="output" path="bin"/>
+    <!-- Riferimento ai file sorgente -->
+    <classpathentry kind="src" path="src"/>
+
+    <!-- Riferimento alle librerie di JUnit e Hamcrest -->
+    <classpathentry kind="lib" path="${workspaceFolder}/lib/junit-4.13.2.jar"/>
+    <classpathentry kind="lib" path="${workspaceFolder}/lib/hamcrest-core-1.3.jar"/>
+
+    <!-- Riferimento al JDK standard -->
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+
+    <!-- Directory di output per i file compilati -->
+    <classpathentry kind="output" path="bin"/>
 </classpath>
