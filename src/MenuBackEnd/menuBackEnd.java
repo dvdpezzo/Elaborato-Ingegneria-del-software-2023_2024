@@ -40,7 +40,7 @@ public class menuBackEnd {
 								System.out.println("Comprensorio aggiunto.");
 					}
 				case 3 -> {
-								List<Categoria> gerarchia = configuratore.creaGerarchia();
+							    List<Categoria> gerarchia = configuratore.creaGerarchia();
 								System.out.println("Nuova gerarchia creata.");
 					}
 				case 4 -> {
@@ -69,6 +69,3 @@ public class menuBackEnd {
 			}		
 		} while (isLoggedIn);
 	}
-}
-    
-}

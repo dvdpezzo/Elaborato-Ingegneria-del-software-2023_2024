@@ -19,7 +19,7 @@ public class GestoreCategorie {
             // Inserire qui il codice per creare una nuova sottocategoria
             Categoria nomeSottocategoria = creaCategoria();
             radice.aggiungiSottoCategoria(nomeSottocategoria);
-        } while (condition);
+        } while (condition); 
         
         // Aggiungiamo la categoria radice alla gerarchia
         gerarchia.add(radice);
