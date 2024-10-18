@@ -55,7 +55,7 @@ public class Configuratore extends Utente  {
     public void visualizzaGerarchia(){}
     public void visualizzaFattoriConversione(){}
 
-    List<Categoria> creaGerarchia() {
+    public List<Categoria> creaGerarchia() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

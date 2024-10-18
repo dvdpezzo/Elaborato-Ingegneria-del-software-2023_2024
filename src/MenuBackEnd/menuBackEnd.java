@@ -16,9 +16,12 @@ public class menuBackEnd {
 												"SALVA",
 												"LOGOUT"};
       
+	
         //se credenziali validi, mostra menu back-end:
 		MenuUtil menuBackEnd = new MenuUtil("MENU BACK-END:", vociMenuBackEnd);
-        boolean isLoggedIn = true;
+
+        {
+		boolean isLoggedIn = true;
 		do {
 			int scelta = menuBackEnd.scegli();
             switch (scelta) {  
@@ -68,4 +71,8 @@ public class menuBackEnd {
 					}
 			}		
 		} while (isLoggedIn);
-	}
+}
+
+}
+
+	//da sistemare e implementare nel main
